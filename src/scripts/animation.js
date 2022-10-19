@@ -50,13 +50,15 @@ const animation = () => {
   animateThirdSquare();
   animateFourthSquare();
 
-  wrap.addEventListener("transitionend", () => {
+  setTimeout(() => {
     showCircle();
-    setTimeout(() => {
-      wrap.style.cursor = "pointer";
-      showSelectForm();
-    }, 2000);
-  });
+    rotateCircle();
+  }, 2500);
+
+  function rotateCircle() {
+    wrap.style.rotate = '180deg';
+    wrap.addEventListener('transitionend', showSelectForm);
+  }
 
   const showCircle = () => {
     wrap.innerHTML = "";
@@ -66,6 +68,7 @@ const animation = () => {
   };
 
   const showSelectForm = () => {
+    wrap.style.cursor = 'pointer';
     wrap.addEventListener("click", () => {
       document.body.innerHTML = `
         <div class="select-wrap" id="select-wrap">
