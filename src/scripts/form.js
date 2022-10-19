@@ -5,7 +5,7 @@ const getData = async () => {
   return await response.json();
 };
 
-const cars = getData();
+const cars = await getData();
 
 const form = () => {
   const mark = document.getElementById("mark-select");
