@@ -38,6 +38,8 @@ const form = () => {
   const createOptionsHandler = (e, currentProp, nextProp, lastProp) => {
     const value = e.target.value;
     if (value !== "---") {
+      document.getElementById(`${lastProp}-select`).innerHTML = `<option>---</option>`;
+      document.getElementById(`${lastProp}-select`).disabled = true;
       const arr = filterCars(currentProp, value);
       createOptions(getUniqueValues(arr, nextProp), nextProp);
       document.getElementById(`${nextProp}-select`).disabled = false;
