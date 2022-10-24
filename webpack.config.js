@@ -3,6 +3,7 @@ const { merge } = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const baseConfig = {
   entry: path.resolve(__dirname, './src/index'),
@@ -11,7 +12,7 @@ const baseConfig = {
     rules: [
       {
         test: /\.css$/i,
-        use: ['style-loader', 'css-loader'],
+        use: [MiniCssExtractPlugin.loader, 'css-loader'],
       },
     ],
   },
@@ -33,6 +34,7 @@ const baseConfig = {
         from: './src/assets', to: 'assets'
       }],
     }),
+    new MiniCssExtractPlugin(),
   ],
   experiments: {
     topLevelAwait: true
